@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\JenisBukuController;
+use App\Http\Controllers\RakBukuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
+Route::get('/buku', [BukuController::class, 'index'])->name('buku');
+Route::get('/jenisbuku', [JenisBukuController::class, 'index'])->name('jenisbuku');
+Route::get('/rakbuku', [RakBukuController::class, 'index'])->name('rakbuku');
