@@ -9,7 +9,7 @@ class JenisBuku extends Model
 {
     use HasFactory;
 
-    protected $table ='jenis_buku'
+    protected $table ='jenis_buku';
 
     public $timestamps = false;
 

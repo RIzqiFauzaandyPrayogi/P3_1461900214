@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\JenisBukuController;
 use App\Http\Controllers\RakBukuController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\RakBukuController;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-Route::get('/buku', [BukuController::class, 'index'])->name('buku');
-Route::get('/jenisbuku', [JenisBukuController::class, 'index'])->name('jenisbuku');
-Route::get('/rakbuku', [RakBukuController::class, 'index'])->name('rakbuku');
+
+Route::resource('buku', BukuController::class);
+Route::resource('jenis_buku', JenisBukuController::class);
+Route::resource('rak_buku', RakBukuController::class);
+Route::resource('user', UserController::class);

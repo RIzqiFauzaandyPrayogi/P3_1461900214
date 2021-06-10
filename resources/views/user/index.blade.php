@@ -2,35 +2,37 @@
 
 @section('content')
 
-<a href="{{ route('buku.create') }}">Membuat Baru</a>
+<a href="{{ route('user.create') }}">Membuat Baru</a>
 
 <table style="margin-left:auto;margin-right:auto" position="absolute" border="4" width="400px">
     <thead>
         <th bgcolor="blue" align="center">Nomor</th>
         <th bgcolor="blue" align="center">ID</th>
-        <th bgcolor="blue" align="center">Judul</th>
-        <th bgcolor="blue" align="center">Tahun Terbit</th>
+        <th bgcolor="blue" align="center">Nama</th>
+        <th bgcolor="blue" align="center">Username</th>
+        <th bgcolor="blue" align="center">Password</th>
         <th bgcolor="blue" align="center">Tampilan</th>
     </thead>
-    <tbody>@foreach($buku as $buku)
+    <tbody>@foreach($user as $user)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $buku->id }}</td>
-                <td>{{ $buku->judul }}</td>
-                <td>{{ $buku->tahun_terbit }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->nama }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->password }}</td>
                 <td> 
-                    <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
+                    <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                            <a href="{{ route('buku.show', $buku->id) }}">
+                            <a href="{{ route('user.show', $user->id) }}">
                                 Lihat
                             </a>
 
-                            <a href="{{ route('buku.edit', $buku->id) }}">
+                            <a href="{{ route('user.edit', $user->id) }}">
                                 Edit
                             </a>
 
-                            <button onclick="return confirm('Apakah Anda yakin ingin menghapus data ini #{{ $buku->id }}?')">
+                            <button onclick="return confirm('Apakah Anda yakin ingin menghapus data ini #{{ $user->id }}?')">
                                 Hapus
                             </button>
                         </div>
@@ -40,5 +42,4 @@
     </tbody>
     @endforeach
 </table>
-
 @stop

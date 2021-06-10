@@ -9,7 +9,7 @@ class Buku extends Model
 {
     use HasFactory;
 
-    protected $table ='buku'
+    protected $table ='buku';
 
     public $timestamps = false;
 

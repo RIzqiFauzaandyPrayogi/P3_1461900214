@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RakBuku;
+use App\Models\User;
 
-class RakBukuController extends Controller
+class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $rak_buku = RakBuku::when($request->cari, function ($query) use ($request) {
+        $user = User::when($request->cari, function ($query) use ($request) {
             $query
-            ->where('id_buku', 'like', "%{$request->cari}%");
+            ->where('nama', 'like', "%{$request->cari}%");
         })->paginate(5);
 
-        $rak_buku->appends($request->only('cari'));
+        $user->appends($request->only('cari'));
 
-        return view('rak_buku.index', [
-            'rak_buku' => $rak_buku,
+        return view('user.index', [
+            'user' => $user,
         ])
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -29,7 +29,7 @@ class RakBukuController extends Controller
      */
     public function create()
     {
-        return view('rak_buku.create');
+        return view('user.create');
     }
 
     /**
@@ -41,15 +41,16 @@ class RakBukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_buku'              => 'required',
-            'id_jenis_buku'        => 'required',
+            'nama'           => 'required',
+            'username'       => 'required',
+            'password'       => 'required',
         ]);
 
-        RakBuku::create($request->all());
+        User::create($request->all());
 
         return redirect()
-                ->route('rak_buku.index')
-                ->with('success','RakBuku created successfully.');
+                ->route('user.index')
+                ->with('success','User created successfully.');
     }
 
     /**
@@ -58,9 +59,9 @@ class RakBukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(RakBuku $rak_buku)
+    public function show(User $user)
     {
-        return view('rak_buku.show', compact('rak_buku'));
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -69,9 +70,9 @@ class RakBukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RakBuku $rak_buku)
+    public function edit(User $user)
     {
-        return view('rak_buku.edit', compact('rak_buku'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -81,18 +82,19 @@ class RakBukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RakBuku $rak_buku)
+    public function update(Request $request, User $user)
     {
         $request->validate([
-            'id_buku'              => 'required',
-            'id_jenis_buku'        => 'required',
+            'nama'           => 'required',
+            'username'       => 'required',
+            'password'       => 'required',
         ]);
 
-        $rak_buku->update($request->all());
+        $user->update($request->all());
 
         return redirect()
-                ->route('rak_buku.index')
-                ->with('success','RakBuku updated successfully');
+                ->route('user.index')
+                ->with('success','User updated successfully');
     }
 
     /**
@@ -101,11 +103,11 @@ class RakBukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RakBuku $rak_buku)
+    public function destroy(User $user)
     {
-        $rak_buku->delete();
+        $user->delete();
 
-        return redirect()->route('rak_buku.index')
-                ->with('success','RakBuku deleted successfully');
+        return redirect()->route('user.index')
+                ->with('success','User deleted successfully');
     }
 }

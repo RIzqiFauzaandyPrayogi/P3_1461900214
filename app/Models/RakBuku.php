@@ -9,7 +9,7 @@ class RakBuku extends Model
 {
     use HasFactory;
 
-    protected $table ='rak_buku'
+    protected $table ='rakbuku';
 
     public $timestamps = false;
 
