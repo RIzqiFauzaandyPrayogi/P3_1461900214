@@ -3,8 +3,8 @@
 @section('content')
 
 
-<h4>{{ $jenis_buku->id }}</h4>
-<h4>{{ $jenis_buku->jenis }}</h4>
+<span style="margin-right:40px">{{ $jenis_buku->id }}</span>
+<span style="margin-right:40px">{{ $jenis_buku->jenis }}</span>
 
 
 @stop

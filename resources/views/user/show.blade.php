@@ -3,9 +3,9 @@
 @section('content')
 
 
-<h4>{{ $user->nama }}</h4>
-<h4>{{ $user->username }}</h4>
-<h4>{{ $user->password }}</h4>
+<span style="margin-right:40px">{{ $user->nama }}</span>
+<span style="margin-right:40px">{{ $user->username }}</span>
+<span style="margin-right:40px">{{ $user->password }}</span>
 
 
 @stop
